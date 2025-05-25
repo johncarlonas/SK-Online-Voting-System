@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Voting Event</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css">
+  <link rel="stylesheet" href="/static/css_files/add_election.css">
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="form-container">
+    <h1>Add Voting Event</h1>
+    <form method="POST" action="/admin/add_election">
+      <label for="title">Election Title</label>
+      <input type="text" id="title" name="title" required>
+
+      <label for="start">Start Date and Time</label>
+      <input type="datetime-local" id="start" name="start" required>
+
+      <label for="end">End Date and Time</label>
+      <input type="datetime-local" id="end" name="end" required>
+
+      <div class="buttons">
+        <button type="submit" class="submit-btn">Add Event</button>
+        <a href="/admin/home" class="cancel-btn">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

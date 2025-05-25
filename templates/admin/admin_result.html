@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Election Results</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/admin_result.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="container">
+    <h1>ELECTION RESULTS</h1>
+
+    {% for position, data in results.items() %}
+      <div class="result-section">
+        <h2>SK {{ position.capitalize() }}</h2>
+        <label class="show-results-toggle">
+          <input type="checkbox" id="show-{{ position }}"
+            {% if data.visible %}checked{% endif %}
+            onchange="toggleVisibility('{{ position }}')">
+          Show results to public
+        </label>
+
+        {% if data.names %}
+          <canvas id="chart{{ position }}"></canvas>
+        {% else %}
+          <p class="no-result">No result</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    {% for position, data in results.items() %}
+      {% if data.names %}
+        new Chart(document.getElementById('chart{{ position }}'), {
+          type: 'bar',
+          data: {
+            labels: {{ data.names | tojson }},
+            datasets: [{
+              label: 'Number of Votes',
+              data: {{ data.votes | tojson }},
+              backgroundColor: '#28a092'
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            scales: {
+              x: { beginAtZero: true }
+            }
+          }
+        });
+      {% endif %}
+    {% endfor %}
+
+    function toggleVisibility(position) {
+      const checkbox = document.getElementById('show-' + position);
+      fetch('/admin/update_visibility', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          position: position,
+          visible: checkbox.checked
+        })
+      });
+    }
+  </script>
+
+</body>
+</html>

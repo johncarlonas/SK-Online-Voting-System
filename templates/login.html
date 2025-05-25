@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Register</title>
+  <link rel="stylesheet" href="/static/css_files/login_page.css">
+  <script>
+    function showForm(formType) {
+      document.getElementById("loginForm").style.display = formType === 'login' ? 'block' : 'none';
+      document.getElementById("registerForm").style.display = formType === 'register' ? 'block' : 'none';
+
+      document.getElementById("loginBtn").classList.toggle("active", formType === 'login');
+      document.getElementById("registerBtn").classList.toggle("active", formType === 'register');
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-section">
+      <div class="toggle">
+        <button id="loginBtn" class="active" onclick="showForm('login')">Login</button>
+        <button id="registerBtn" onclick="showForm('register')">Sign Up</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form login-form" method="POST" action="/login">
+        <h2>Login</h2>
+        <input type="text" name="email_or_voterid" placeholder="Email or Voter ID" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <div class="extra">
+          <a href="#">Forgot your password?</a>
+        </div>
+        <button type="submit">Login</button>
+        <span class="validation-error" id="loginError">{{ login_error }}</span>
+      </form>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form register-form" method="POST" action="/register" style="display:none;">
+        <h2>Sign Up</h2>
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+        <input type="text" name="voter_id" placeholder="Voter ID" required>
+        <input type="number" name="age" id="ageInput" placeholder="Age" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" id="passwordInput" placeholder="Password" required>
+        <button type="submit">Register</button>
+        <span class="validation-error">{{ register_error }}</span> 
+        <span id="passwordError" class="validation-error"></span>
+        <span id="ageError" class="validation-error"></span>
+        <span id="ageError" class="validation-error"></span>
+      </form>
+    </div>
+
+    <div class="image-section">
+      <img src="/static/images/sk_logo.png" alt="Login Graphic">
+      <h1>SK Online Voting System</h1>
+      <h4>Sigaw ng Kabataan, Idaan sa Halalan!</h4>
+    </div>
+  </div>
+</body>
+<script>
+  const ageInput = document.getElementById('ageInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const ageError = document.getElementById('ageError');
+  const passwordError = document.getElementById('passwordError');
+
+  document.getElementById('registerForm').addEventListener('submit', function (e) {
+    let valid = true;
+
+    // Age Validation
+    const age = parseInt(ageInput.value);
+    if (age < 15 || age > 30) {
+      ageError.textContent = "Age must be between 15 and 30.";
+      valid = false;
+    } else {
+      ageError.textContent = "";
+    }
+
+    // Password Validation
+    const password = passwordInput.value;
+    if (password.length < 8) {
+      passwordError.textContent = "Password must be at least 8 characters long.";
+      valid = false;
+    } else {
+      passwordError.textContent = "";
+    }
+
+    if (!valid) e.preventDefault();
+  });
+</script>
+</html>

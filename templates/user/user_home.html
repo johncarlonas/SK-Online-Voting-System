@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Home</title>
+  <link rel="stylesheet" href="/static/css_files/user_navbar.css">
+  <link rel="stylesheet" href="/static/css_files/user_home.css">
+</head>
+<body>
+
+  {% include 'user/user_navbar.html' %}
+
+  <div class="user-home">
+    <div class="header-section">
+      <h1>ONGOING ELECTION EVENTS</h1>
+    </div>
+
+    <div class="election-list">
+      {% if elections %}
+        {% for election in elections %}
+          <div class="election-item">
+            <h2>{{ election.title }}</h2>
+            <p>{{ election.start_time }} to {{ election.end_time }}</p>
+            <p>Status: {{ election.status }}</p>
+
+            {% if election.status == 'ongoing' %}
+              {% if election.election_id not in voted_elections %}
+                <a href="{{ url_for('vote') }}" class="vote-now-btn"><strong>Vote Now</strong></a>
+              {% else %}
+                <p style="color: #28a092; font-weight: bold;">You have already voted.</p>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-election">No election events available.</p>
+      {% endif %}
+    </div>
+  </div>
+
+</body>
+</html>

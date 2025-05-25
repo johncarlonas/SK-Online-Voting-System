@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vote</title>
+  <link rel="stylesheet" href="/static/css_files/user_navbar.css">
+  <link rel="stylesheet" href="/static/css_files/vote.css">
+</head>
+<body>
+
+  {% include 'user/user_navbar.html' %}
+
+  <div class="vote-container">
+    <h1>VOTE NOW</h1>
+    <form id="voteForm" method="POST" action="/user/vote">
+
+      <!-- Chairperson -->
+      <section class="vote-section">
+        <h2>SK Chairperson <span class="limit-text">(Vote for 1)</span></h2>
+        {% for candidate in candidates.chairperson %}
+          <label class="vote-row">
+            <input type="radio" name="chairperson" value="{{ candidate.candidate_id }}">
+            <img src="/static/images/prof_icon.png" alt="Profile">
+            <div class="info">
+              <strong>
+                {% if candidate.first_name == 'Abstain' %}
+                  Abstain
+                {% else %}
+                  {{ candidate.last_name }}, {{ candidate.first_name }}
+                {% endif %}
+              </strong>
+              <span>{{ candidate.party_name }}</span>
+            </div>
+          </label>
+        {% endfor %}
+        <span class="validation-error" id="chairError"></span>
+      </section>
+
+      <!-- Treasurer -->
+      <section class="vote-section">
+        <h2>SK Treasurer <span class="limit-text">(Vote for 1)</span></h2>
+        {% for candidate in candidates.treasurer %}
+          <label class="vote-row">
+            <input type="radio" name="treasurer" value="{{ candidate.candidate_id }}">
+            <img src="/static/images/prof_icon.png" alt="Profile">
+            <div class="info">
+              <strong>
+                {% if candidate.first_name == 'Abstain' %}
+                  Abstain
+                {% else %}
+                  {{ candidate.last_name }}, {{ candidate.first_name }}
+                {% endif %}
+              </strong>
+              <span>{{ candidate.party_name }}</span>
+            </div>
+          </label>
+        {% endfor %}
+        <span class="validation-error" id="treasurerError"></span>
+      </section>
+
+      <!-- Kagawad -->
+      <section class="vote-section">
+        <h2>SK Councilor <span class="limit-text">(Vote up to 7)</span></h2>
+        {% for candidate in candidates.kagawad %}
+          <label class="vote-row">
+            <input type="checkbox" name="kagawad" value="{{ candidate.candidate_id }}" class="kagawad-check">
+            <img src="/static/images/prof_icon.png" alt="Profile">
+            <div class="info">
+              <strong>
+                {% if candidate.first_name == 'Abstain' %}
+                  Abstain
+                {% else %}
+                  {{ candidate.last_name }}, {{ candidate.first_name }}
+                {% endif %}
+              </strong>
+              <span>{{ candidate.party_name }}</span>
+            </div>
+          </label>
+        {% endfor %}
+        <span class="validation-error" id="kagawadError"></span>
+      </section>
+      <div class="submit-wrap">
+        <button type="submit" class="vote-submit">Submit Vote</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('voteForm');
+    const chairError = document.getElementById('chairError');
+    const treasurerError = document.getElementById('treasurerError');
+    const kagawadError = document.getElementById('kagawadError');
+
+    form.addEventListener('submit', function (e) {
+      let valid = true;
+
+      // Clear previous errors
+      chairError.textContent = "";
+      treasurerError.textContent = "";
+      kagawadError.textContent = "";
+
+      // Chairperson validation
+      const chairSelected = document.querySelector('input[name="chairperson"]:checked');
+      if (!chairSelected) {
+        chairError.textContent = "You need to choose at least one.";
+        valid = false;
+      }
+
+      // Treasurer validation
+      const treasurerSelected = document.querySelector('input[name="treasurer"]:checked');
+      if (!treasurerSelected) {
+        treasurerError.textContent = "You need to choose at least one.";
+        valid = false;
+      }
+
+      // Kagawad validation
+      const kagawadSelected = document.querySelectorAll('input[name="kagawad"]:checked');
+      if (kagawadSelected.length === 0) {
+        kagawadError.textContent = "You need to choose at least one.";
+        valid = false;
+      } else if (kagawadSelected.length > 7) {
+        kagawadError.textContent = "You can vote for up to 7 councilors only.";
+        valid = false;
+      }
+
+      if (!valid) e.preventDefault();
+    });
+  </script>
+</body>
+</html>

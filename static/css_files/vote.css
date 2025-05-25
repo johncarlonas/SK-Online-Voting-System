@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f9f8;
+    margin: 0;
+  }
+  
+  .vote-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    color: #2b8a7e;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: #2b8a7e;
+    border-bottom: 2px solid #c6f1ee;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .vote-section {
+    margin-bottom: 50px;
+  }
+  
+  .vote-section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #28a092;
+  }
+  
+  .limit-text {
+    font-size: 14px;
+    color: #666;
+    font-weight: normal;
+  }
+  
+  .vote-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+  
+  .vote-row input[type="radio"],
+  .vote-row input[type="checkbox"] {
+    margin-right: 15px;
+    transform: scale(1.2);
+  }
+  
+  .vote-row img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+  }
+  
+  .vote-row .info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .vote-row .info span {
+    font-size: 13px;
+    font-weight: normal;
+    color: #555;
+  }
+  
+  .submit-wrap {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .vote-submit {
+    padding: 12px 30px;
+    background-color: #28a092;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .vote-submit:hover {
+    background-color: #1f7e74;
+  }
+
+  .validation-error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+  }

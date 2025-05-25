@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Profile</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/profile.css"> 
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="profile-container">
+    <div class="profile-box">
+
+      <!-- Profile Picture and Info -->
+      <div class="profile-header">
+        <img src="/static/images/prof_icon.png" alt="Profile Icon" class="profile-image">
+
+        <div class="user-info">
+          <h2>{{ admin.first_name }} {{ admin.last_name }}</h2>
+          <p>Admin ID: {{ admin.voter_id }}</p>
+          <p class="verified">Admin</p>
+        </div>
+      </div>
+
+      <hr>
+
+      <!-- Edit + Logout -->
+      <div class="action-buttons">
+        <a href="{{ url_for('admin_edit_profile') }}" class="action-link">
+          <img src="/static/images/edit_icon.png" alt="Edit Icon">
+          Edit Profile
+        </a>
+        <a href="javascript:void(0);" onclick="showLogoutPrompt()" class="action-link">
+          <img src="/static/images/logout_icon.png" alt="Logout Icon">
+            Logout
+          </a>
+
+        <!-- Logout Modal -->
+        <div class="delete-modal" id="logout-modal">
+          <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div class="modal-buttons">
+              <a href="{{ url_for('logout') }}" class="confirm-btn">Logout</a>
+              <button class="cancel-btn" onclick="hideLogoutPrompt()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  function showLogoutPrompt() {
+    document.getElementById('logout-modal').style.display = 'flex';
+  }
+  function hideLogoutPrompt() {
+    document.getElementById('logout-modal').style.display = 'none';
+  }
+</script>
+</body>
+</html>

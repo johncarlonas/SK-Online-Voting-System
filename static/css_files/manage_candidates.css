@@ -1,0 +1,186 @@
+/* Copy all base styles from user_candidate_details.css first */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f9f8;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    color: #2b8a7e;
+  }
+  
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #2b8a7e;
+    border-bottom: 2px solid #c6f1ee;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .add-btn {
+    background-color: #28a092;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .add-btn:hover {
+    background-color: #1f7e74;
+  }
+  
+  .candidate-group {
+    margin-bottom: 40px;
+  }
+  
+  .candidate-group h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #28a092;
+    border-left: 5px solid #28a092;
+    padding-left: 10px;
+    text-align: left;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .candidate-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    width: 400px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  
+  .candidate-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .candidate-card img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  
+  .candidate-card.horizontal {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .candidate-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+  }
+  
+  .candidate-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #4d867f;
+  }
+  
+  /* Action menu (3-dot) */
+  .action-menu {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .action-menu button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    z-index: 100;
+  }
+  
+  .dropdown a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #2b8a7e;
+    font-size: 14px;
+  }
+  
+  .dropdown a:hover {
+    background-color: #f0f9f8;
+  }
+  
+  /* Delete modal styles */
+.delete-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-modal .modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 200px;
+  width: 90%;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirm-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Candidate</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/add_candidate.css" />
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="form-container">
+    <h1>Add New Candidate</h1>
+
+    <form method="POST" action="/admin/add_candidate">
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" name="first_name" required>
+
+      <label for="last_name">Last Name</label>
+      <input type="text" id="last_name" name="last_name" required>
+
+      <label for="party">Party</label>
+      <input type="text" id="party" name="party" required>
+
+      <label for="description">About the Candidate</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="position">Position</label>
+      <select id="position" name="position" required>
+        <option value="chairperson">SK Chairperson</option>
+        <option value="treasurer">SK Treasurer</option>
+        <option value="kagawad">SK Councilor</option>
+      </select>
+
+      <div class="buttons">
+        <button type="submit" class="add-btn">Add Candidate</button>
+        <a href="/admin/manage_candidates" class="cancel-btn">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

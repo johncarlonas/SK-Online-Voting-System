@@ -1,0 +1,78 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f9f8;
+    margin: 0;
+  }
+  
+  .form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    color: #2b8a7e;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 26px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .save-btn {
+    background-color: #28a092;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    text-decoration: none;
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  
+  .save-btn:hover {
+    background-color: #1f7e74;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #aaa;
+  }
+  

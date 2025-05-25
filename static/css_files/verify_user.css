@@ -1,0 +1,169 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f9f8;
+  margin: 0;
+}
+
+.page-header {
+  max-width: 900px;
+  margin: 100px auto 10px;
+  padding: 0 40px;
+}
+
+.page-header h1 {
+font-size: 28px;
+color: #2b8a7e;
+border-bottom: 2px solid #c6f1ee;
+display: inline-block;
+padding-bottom: 6px;
+margin-bottom: 8px; 
+}
+
+h2 {
+  font-size: 22px;
+  color: #28a092;
+  margin: 20px 0 20px;
+}
+
+.candidate-card.horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    padding: 3px 20px;
+    margin-bottom: 15px;
+  }
+  
+  .candidate-card img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .candidate-info {
+    flex-grow: 1;
+  }
+  
+  .candidate-info h3 {
+    margin: 0;
+    font-size: 15px;
+    color: #2b8a7e;
+  }
+  
+  .candidate-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .action-menu {
+    position: relative;
+  }
+  
+  .action-menu button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 28px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  
+  .dropdown a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #2b8a7e;
+    font-size: 14px;
+  }
+  
+  .dropdown a:hover {
+    background-color: #f0f9f8;
+  }
+  
+    /* Delete modal styles */
+.delete-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 50;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-modal .modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 200px;
+  width: 90%;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.verif-confirm-btn {
+  background-color: #129147;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.confirm-btn {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.section-box-pending {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 1000px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-box-verified {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 1000px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}

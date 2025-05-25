@@ -1,0 +1,99 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f9f8;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    color: #2b8a7e;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: #2b8a7e;
+    border-bottom: 2px solid #c6f1ee;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  
+  .candidate-group {
+    margin-bottom: 40px;
+  }
+  
+  .candidate-group h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #28a092;
+    border-left: 5px solid #28a092;
+    padding-left: 10px;
+    text-align: left;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .candidate-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  
+  .candidate-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .candidate-card img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .candidate-card h3 {
+    font-size: 20px;
+    margin: 10px 0 5px 0;
+  }
+  
+  .candidate-card p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #4d867f;
+  }
+
+  /* For horizontal layout */
+.candidate-card.horizontal {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .candidate-card.horizontal img {
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+  
+  .candidate-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+  }
+  
+  .candidate-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #4d867f;
+  }

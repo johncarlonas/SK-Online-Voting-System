@@ -1,0 +1,67 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f9f8;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 20px auto 40px; 
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    color: #2b8a7e;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #2b8a7e;
+    border-bottom: 2px solid #c6f1ee;
+    display: inline-block;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  
+  .vote-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .vote-table th,
+  .vote-table td {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .vote-table th {
+    background-color: #c6f1ee;
+    color: #2b8a7e;
+    font-size: 16px;
+  }
+  
+  .vote-table tr:hover {
+    background-color: #f1fdfc;
+  }
+  
+  .no-votes {
+    font-style: italic;
+    color: gray;
+  }
+  
+  .page-header {
+    max-width: 900px;
+    margin: 100px auto 10px;
+    padding: 0 40px;
+  }
+  
+  .page-header h1 {
+  font-size: 28px;
+  color: #2b8a7e;
+  border-bottom: 2px solid #c6f1ee;
+  display: inline-block;
+  padding-bottom: 6px;
+  margin-bottom: 8px; 
+}

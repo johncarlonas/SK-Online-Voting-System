@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Election</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/edit_election.css" />
+</head>
+<body>
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="form-container">
+    <h1>EDIT VOTING EVENT</h1>
+    <form method="POST">
+      <label for="title">Election Title</label>
+      <input type="text" id="title" name="title" value="{{ election.title }}" required>
+
+      <label for="start">Start Date and Time</label>
+      <input type="datetime-local" id="start" name="start" value="{{ election.start_time|replace(' ', 'T') }}" required>
+
+      <label for="end">End Date and Time</label>
+      <input type="datetime-local" id="end" name="end" value="{{ election.end_time|replace(' ', 'T') }}" required>
+
+      <div class="buttons">
+        <button type="submit" class="submit-btn">Save Changes</button>
+        <a href="/admin/home" class="cancel-btn">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

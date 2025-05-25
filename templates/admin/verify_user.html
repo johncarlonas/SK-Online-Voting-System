@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Verify Users</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/verify_user.css" />
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="page-header">
+    <h1>VERIFY USERS</h1>
+  </div>
+
+  <!-- Pending Users Section -->
+  <div class="container">
+    <div class="section-box-pending">
+      <section class="candidate-group">
+        <h2>Pending Accounts</h2>
+        {% if pending_users %}
+          <div class="card-container">
+            {% for user in pending_users %}
+            <div class="candidate-card horizontal">
+              <img src="/static/images/prof_icon.png" alt="User Photo" />
+              <div class="candidate-info">
+                <h3>
+                  {% if user.last_name %}{{ user.last_name }}, {% endif %}
+                  {{ user.first_name }}
+                </h3>
+                <p>{{ user.voter_id }}</p>
+              </div>
+              <div class="action-menu">
+                <button onclick="toggleMenu(this)">⋮</button>
+                <div class="dropdown">
+                  <a href="javascript:void(0);" onclick="showVerifyPrompt({{ user.user_id }})">Verify</a>
+                  <a href="javascript:void(0);" onclick="showRejectPrompt({{ user.user_id }})">Reject</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Verify Modal -->
+            <div class="delete-modal" id="verify-modal-{{ user.user_id }}">
+              <div class="modal-content">
+                <p>Are you sure you want to verify <strong>{{ user.first_name }} {{ user.last_name }}</strong>?</p>
+                <div class="modal-buttons">
+                  <a href="{{ url_for('verify_user', user_id=user.user_id) }}" class="verif-confirm-btn">Verify</a>
+                  <button class="cancel-btn" onclick="hideVerifyPrompt({{ user.user_id }})">Cancel</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reject Modal -->
+            <div class="delete-modal" id="reject-modal-{{ user.user_id }}">
+              <div class="modal-content">
+                <p>Are you sure you want to reject <strong>{{ user.first_name }} {{ user.last_name }}</strong>?</p>
+                <div class="modal-buttons">
+                  <a href="{{ url_for('reject_user', user_id=user.user_id) }}" class="confirm-btn">Reject</a>
+                  <button class="cancel-btn" onclick="hideRejectPrompt({{ user.user_id }})">Cancel</button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No pending accounts</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+
+  <!-- Verified Users Section -->
+  <div class="container">
+    <div class="section-box-verified">
+      <section class="candidate-group">
+        <h2>Verified Accounts</h2>
+        {% if verified_users %}
+          <div class="card-container">
+            {% for user in verified_users %}
+            <div class="candidate-card horizontal">
+              <img src="/static/images/prof_icon.png" alt="User Photo" />
+              <div class="candidate-info">
+                <h3>
+                  {% if user.last_name %}{{ user.last_name }}, {% endif %}
+                  {{ user.first_name }}
+                </h3>
+                <p>{{ user.voter_id }}</p>
+              </div>
+              <div class="action-menu">
+                <button onclick="toggleMenu(this)">⋮</button>
+                <div class="dropdown">
+                  {% if user.role != 'admin' %}
+                    <a href="javascript:void(0);" onclick="showDeletePrompt({{ user.user_id }})">Delete</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            {% if user.role != 'admin' %}
+            <!-- Delete Modal -->
+            <div class="delete-modal" id="delete-modal-{{ user.user_id }}">
+              <div class="modal-content">
+                <p>Are you sure you want to delete <strong>{{ user.first_name }} {{ user.last_name }}</strong>?</p>
+                <div class="modal-buttons">
+                  <a href="{{ url_for('delete_user', user_id=user.user_id) }}" class="confirm-btn">Delete</a>
+                  <button class="cancel-btn" onclick="hideDeletePrompt({{ user.user_id }})">Cancel</button>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No verified users</p>
+        {% endif %}
+      </section>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu(button) {
+      document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+      const dropdown = button.nextElementSibling;
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.addEventListener("click", function (e) {
+      if (!e.target.matches("button")) {
+        document.querySelectorAll(".dropdown").forEach(d => d.style.display = "none");
+      }
+    });
+
+    function showVerifyPrompt(id) {
+      document.getElementById(`verify-modal-${id}`).style.display = 'flex';
+    }
+    function hideVerifyPrompt(id) {
+      document.getElementById(`verify-modal-${id}`).style.display = 'none';
+    }
+
+    function showRejectPrompt(id) {
+      document.getElementById(`reject-modal-${id}`).style.display = 'flex';
+    }
+    function hideRejectPrompt(id) {
+      document.getElementById(`reject-modal-${id}`).style.display = 'none';
+    }
+
+    function showDeletePrompt(id) {
+      document.getElementById(`delete-modal-${id}`).style.display = 'flex';
+    }
+    function hideDeletePrompt(id) {
+      document.getElementById(`delete-modal-${id}`).style.display = 'none';
+    }
+  </script>
+</body>
+</html>

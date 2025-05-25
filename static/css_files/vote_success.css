@@ -1,0 +1,37 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f9f8;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .success-container {
+    margin-top: 100px;
+    color: #2b8a7e;
+  }
+  
+  .check-icon {
+    width: 120px;
+    height: 120px;
+  }
+  
+  h2 {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+  
+  .home-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #28a092;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+  
+  .home-button:hover {
+    background-color: #1f7e74;
+  }

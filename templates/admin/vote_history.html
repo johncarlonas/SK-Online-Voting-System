@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vote History</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/vote_history.css" />
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <!-- Header OUTSIDE container -->
+  <div class="page-header">
+    <h1>VOTE HISTORY</h1>
+  </div>
+
+  <!-- White content box -->
+  <div class="container">
+    {% if votes %}
+      <table class="vote-table">
+        <thead>
+          <tr>
+            <th>Voter ID</th>
+            <th>Timestamp</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for vote in votes %}
+          <tr>
+            <td>{{ vote.voter_id }}</td>
+            <td>{{ vote.timestamp }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-votes">No votes have been recorded yet.</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>

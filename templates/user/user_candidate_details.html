@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Candidate Details</title>
+  <link rel="stylesheet" href="/static/css_files/user_navbar.css">
+  <link rel="stylesheet" href="/static/css_files/user_candidate_details.css">
+</head>
+<body>
+
+  {% include 'user/user_navbar.html' %}
+
+  <div class="container">
+    <h1>CANDIDATE DETAILS</h1>
+
+    <!-- SK Chairperson Section -->
+    <section class="candidate-group">
+      <h2>SK Chairperson</h2>
+      {% if candidates.chairperson %}
+        <div class="card-container">
+          {% for candidate in candidates.chairperson %}
+          <div class="candidate-card horizontal">
+            <img src="/static/images/prof_icon.png" alt="Candidate Photo">
+            <div class="candidate-info">
+              <h3>{{ candidate.first_name }} {{ candidate.last_name }}</h3>
+              <p><strong>Party:</strong> {{ candidate.party_name }}</p>
+              <p><strong>About the Candidate:</strong><br>{{ candidate.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No candidate</p>
+      {% endif %}
+    </section>
+
+    <!-- SK Treasurer Section -->
+    <section class="candidate-group">
+      <h2>SK Treasurer</h2>
+      {% if candidates.treasurer %}
+        <div class="card-container">
+          {% for candidate in candidates.treasurer %}
+          <div class="candidate-card horizontal">
+            <img src="/static/images/prof_icon.png" alt="Candidate Photo">
+            <div class="candidate-info">
+              <h3>{{ candidate.first_name }} {{ candidate.last_name }}</h3>
+              <p><strong>Party:</strong> {{ candidate.party_name }}</p>
+              <p><strong>About the Candidate:</strong><br>{{ candidate.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No candidate</p>
+      {% endif %}
+    </section>
+
+    <!-- SK Kagawad Section -->
+    <section class="candidate-group">
+      <h2>SK Councilor</h2>
+      {% if candidates.kagawad %}
+        <div class="card-container">
+          {% for candidate in candidates.kagawad %}
+          <div class="candidate-card horizontal">
+            <img src="/static/images/prof_icon.png" alt="Candidate Photo">
+            <div class="candidate-info">
+              <h3>{{ candidate.first_name }} {{ candidate.last_name }}</h3>
+              <p><strong>Party:</strong> {{ candidate.party_name }}</p>
+              <p><strong>About the Candidate:</strong><br>{{ candidate.description }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No candidate</p>
+      {% endif %}
+    </section>
+  </div>
+
+</body>
+</html>

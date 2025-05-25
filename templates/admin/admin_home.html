@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Home</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css">
+  <link rel="stylesheet" href="/static/css_files/admin_home.css">
+  <script>
+    function toggleDropdown(id) {
+      document.querySelectorAll('.dropdown-menu').forEach(menu => menu.style.display = 'none');
+      const menu = document.getElementById(`dropdown-${id}`);
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showDeletePrompt(id) {
+      document.getElementById(`modal-${id}`).style.display = 'flex';
+    }
+
+    function hideDeletePrompt(id) {
+      document.getElementById(`modal-${id}`).style.display = 'none';
+    }
+
+    // Optional: close dropdown when clicking outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-button')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => menu.style.display = 'none');
+      }
+    }
+  </script>
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="admin-home">
+    <div class="header-section">
+      <h1>ONGOING ELECTION EVENTS</h1>
+      <a href="/admin/add_election" class="add-elect-btn">Add Voting Event</a>
+    </div>
+
+    <div class="election-list">
+      {% if elections %}
+        {% for election in elections %}
+        <div class="election-item" style="position: relative;">
+          <button class="menu-button" onclick="toggleDropdown({{ election.election_id }})">&#x22EE;</button>
+          <div class="dropdown-menu" id="dropdown-{{ election.election_id }}">
+            <a href="{{ url_for('edit_election', election_id=election.election_id) }}">Edit</a>
+            <button onclick="showDeletePrompt({{ election.election_id }})">Delete</button>
+          </div>
+
+          <h2>{{ election.title }}</h2>
+          <p>{{ election.start_time }} to {{ election.end_time }}</p>
+          <p>Status: {{ election.status }}</p>
+
+          <!-- Delete Confirmation Modal -->
+          <div class="delete-modal" id="modal-{{ election.election_id }}">
+            <div class="modal-content">
+              <p>Are you sure you want to delete <strong>{{ election.title }}</strong>?</p>
+              <div class="modal-buttons">
+                <a href="{{ url_for('delete_election', election_id=election.election_id) }}" class="confirm-btn">Delete</a>
+                <button class="cancel-btn" onclick="hideDeletePrompt({{ election.election_id }})">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-election">No ongoing election events</p>
+      {% endif %}
+    </div>
+  </div>
+
+</body>
+</html>

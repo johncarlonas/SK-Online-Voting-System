@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Candidates</title>
+  <link rel="stylesheet" href="/static/css_files/admin_navbar.css" />
+  <link rel="stylesheet" href="/static/css_files/manage_candidates.css" />
+</head>
+<body>
+
+  {% include 'admin/admin_navbar.html' %}
+
+  <div class="container">
+    <div class="header-row">
+      <h1>MANAGE CANDIDATES</h1>
+      <a href="{{ url_for('add_candidate') }}" class="add-btn">Add Candidate</a>
+    </div>
+
+    {% for position, candidates_list in candidates.items() %}
+    <section class="candidate-group">
+      <h2>{{ position | upper }}</h2>
+      {% if candidates_list %}
+        <div class="card-container">
+          {% for candidate in candidates_list %}
+          <div class="candidate-card horizontal">
+            <img src="/static/images/prof_icon.png" alt="Candidate Photo" />
+            <div class="candidate-info">
+              <h3>{{ candidate.first_name }} {{ candidate.last_name }}</h3>
+              <p><strong>Party:</strong> {{ candidate.party_name }}</p>
+              <p><strong>About the Candidate:</strong><br>{{ candidate.description }}</p>
+            </div>
+            <div class="action-menu">
+              <button onclick="toggleMenu(this)">⋮</button>
+              <div class="dropdown">
+                <a href="{{ url_for('edit_candidate', candidate_id=candidate.candidate_id) }}">Edit</a>
+                 <a href="javascript:void(0);" onclick="showDeletePrompt({{ candidate.candidate_id }})">Delete</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete Modal -->
+          <div class="delete-modal" id="modal-{{ candidate.candidate_id }}">
+            <div class="modal-content">
+              <p>Are you sure you want to delete <strong>{{ candidate.first_name }} {{ candidate.last_name }}</strong>?</p>
+              <div class="modal-buttons">
+                <a href="{{ url_for('delete_candidate', candidate_id=candidate.candidate_id) }}" class="confirm-btn">Delete</a>
+                <button class="cancel-btn" onclick="hideDeletePrompt({{ candidate.candidate_id }})">Cancel</button>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>No candidate</p>
+      {% endif %}
+    </section>
+    {% endfor %}
+  </div>
+
+  <script>
+    function toggleMenu(button) {
+      document.querySelectorAll(".dropdown").forEach(drop => drop.style.display = "none");
+      const dropdown = button.nextElementSibling;
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    window.addEventListener("click", function (e) {
+      if (!e.target.matches("button")) {
+        document.querySelectorAll(".dropdown").forEach(drop => drop.style.display = "none");
+      }
+    });
+
+    function showDeletePrompt(id) {
+      document.getElementById(`modal-${id}`).style.display = 'flex';
+    }
+    function hideDeletePrompt(id) {
+      document.getElementById(`modal-${id}`).style.display = 'none';
+    }
+  </script>
+</body>
+</html>

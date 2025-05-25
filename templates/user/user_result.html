@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Election Results</title>
+  <link rel="stylesheet" href="/static/css_files/user_navbar.css">
+  <link rel="stylesheet" href="/static/css_files/user_result.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  {% include 'user/user_navbar.html' %}
+
+  <div class="container">
+    <h1>ELECTION RESULTS</h1>
+
+    {% for position, data in results.items() %}
+      <div class="result-section">
+        <h2>SK {{ position.capitalize() }}</h2>
+        {% if data.names %}
+          <canvas id="chart{{ position }}"></canvas>
+        {% else %}
+          <p class="no-result">No result</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    {% for position, data in results.items() %}
+      {% if data.names %}
+        new Chart(document.getElementById('chart{{ position }}'), {
+          type: 'bar',
+          data: {
+            labels: {{ data.names | tojson }},
+            datasets: [{
+              label: 'Number of Votes',
+              data: {{ data.votes | tojson }},
+              backgroundColor: '#28a092'
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            scales: {
+              x: { beginAtZero: true }
+            }
+          }
+        });
+      {% endif %}
+    {% endfor %}
+  </script>
+
+</body>
+</html>
