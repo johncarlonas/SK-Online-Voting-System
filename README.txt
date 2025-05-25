@@ -3,10 +3,6 @@
     Built with Flask (Python), MySQL, and HTML/CSS/JS.
 
 
---- DEMONSTRATION YT LINK ---
-  https://youtu.be/j29WHjxUb3w?si=Edeud40zoa9hiKKQ
-
-
 --- SYSTEM FEATURES ---
 
 👤 USER FUNCTIONALITY (Voters)
@@ -93,8 +89,5 @@ Auto-created on first run:
   • No blueprints/modular structure
 
 --- CREDITS ---
-  AGNOTE, ROVILYN A.
-  LAVAPIE, VEN JOHN REY C.
   NAS, JOHN CARLO E.
-
-  BSCS-2A
+  johncarlonas@gmail.com
