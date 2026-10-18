@@ -23,10 +23,6 @@
   <img src="https://img.shields.io/badge/CHART.JS-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js" />
 </p>
 
-<p>
-  <a href="https://github.com/johncarlonas/SK-Online-Voting-System">Source Code</a>
-</p>
-
 </div>
 
 ---
